@@ -25,3 +25,27 @@ environmentVariables: [
 param filesToCopy array
 ```
 
+
+### リソースグループの作成
+```sh
+resourceGroupName="learndeploymentscript_exercise_2"
+az group create --location eastus --name $resourceGroupName
+```
+
+### テンプレートを Azure にデプロイする
+```sh
+templateFile="main.bicep"
+templateParameterFile="azuredeploy.parameters.json"
+today=$(date +"%d-%b-%Y")
+deploymentName="deploymentscript-"$today
+
+// storage アカウントなども作成 
+az deployment group create --resource-group $resourceGroupName --name $deploymentName --template-file $templateFile --parameters $templateParameterFile
+```
+
+![image](https://github.com/rensawamo/ARM_extention/assets/106803080/02be3d28-869f-4666-9975-f0e846c6ca62)
+ 
+
+
+
+
